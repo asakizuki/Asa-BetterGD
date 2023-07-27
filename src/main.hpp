@@ -16,6 +16,11 @@ namespace LayerInit
         matdash::orig<&editorUI>(layers, lvl);
         EditorLayerInit::init(layers, lvl);
     };
+    void GJGameLevelEditor(CCLayer *layers, GJGameLevel *lvl)
+    {
+        matdash::orig<&GJGameLevelEditor>(layers, lvl);
+        EditLevelLayerInit::init(layers, lvl);
+    };
     void selectedLiveOverlay(CCLayer *self, ColorAction *col_1, ColorAction *col_2, EffectGameObject *gObj)
     {
         matdash::orig<&selectedLiveOverlay>(self, col_1, col_2, gObj);

@@ -5,7 +5,7 @@
 int iconPage = 0;
 bool isCustomSecondPlayer = true;
 int selectedPage[7] = {0, 0, 0, 0, 0, 0, 0};
-int maxIcon[7] = {142, 51, 43, 35, 35, 26, 17};
+int maxIcon[7] = {0, 0, 0, 0, 0, 0, 0};
 
 void AsaSelectedIcon::ContentLayer::iconSelectedSetting()
 {
@@ -85,6 +85,7 @@ void AsaSelectedIcon::ContentLayer::iconSelectedSetting()
 void AsaSelectedIcon::ContentLayer::changeTabPage(CCLayer *self, int iconType)
 {
     auto selectedIconBG = static_cast<extension::CCScale9Sprite *>(self->getChildByTag(1500));
+    auto pageLabel = static_cast<extension::CCScale9Sprite *>(self->getChildByTag(1501));
     const int iconSlot = selectedPage[iconType] * 36;
 
     {
@@ -127,22 +128,22 @@ void AsaSelectedIcon::ContentLayer::changeTabPage(CCLayer *self, int iconType)
         float iconLine[2] = {0, 2};
         for (int iconIndex = 1; iconIndex < 37; iconIndex++)
         {
-            auto _selectedCube = PlayerRenderer::cubeRenderer(col1, col2, iconIndex + iconSlot, false, 0.8f);
-            if (iconPage == 1)
-                _selectedCube = PlayerRenderer::shipRenderer(col1, col2, iconIndex + iconSlot, false, 0.65f);
-            else if (iconPage == 2)
-                _selectedCube = PlayerRenderer::ballRenderer(col1, col2, iconIndex + iconSlot, false, 0.8f);
-            else if (iconPage == 3)
-                _selectedCube = PlayerRenderer::ufoRenderer(col1, col2, iconIndex + iconSlot, false, 0.7f);
-            else if (iconPage == 4)
-                _selectedCube = PlayerRenderer::waveRenderer(col1, col2, iconIndex + iconSlot, false, 0.9f);
-            else if (iconPage == 5)
-                _selectedCube = PlayerRenderer::robotRenderer(col1, col2, iconIndex + iconSlot, false, 0.8f);
-            else if (iconPage == 6)
-                _selectedCube = PlayerRenderer::spiderRenderer(col1, col2, iconIndex + iconSlot, false, 0.65f);
-
-            if (!(iconIndex + iconSlot > maxIcon[iconType] || iconIndex + iconSlot < 1))
+            if (!(iconIndex + iconSlot > maxIcon[iconType] - 1 || iconIndex + iconSlot < 1))
             {
+                auto _selectedCube = PlayerRenderer::cubeRenderer(col1, col2, iconIndex + iconSlot, false, 0.8f);
+                if (iconPage == 1)
+                    _selectedCube = PlayerRenderer::shipRenderer(col1, col2, iconIndex + iconSlot, false, 0.65f);
+                else if (iconPage == 2)
+                    _selectedCube = PlayerRenderer::ballRenderer(col1, col2, iconIndex + iconSlot, false, 0.8f);
+                else if (iconPage == 3)
+                    _selectedCube = PlayerRenderer::ufoRenderer(col1, col2, iconIndex + iconSlot, false, 0.7f);
+                else if (iconPage == 4)
+                    _selectedCube = PlayerRenderer::waveRenderer(col1, col2, iconIndex + iconSlot, false, 0.9f);
+                else if (iconPage == 5)
+                    _selectedCube = PlayerRenderer::robotRenderer(col1, col2, iconIndex + iconSlot, false, 0.8f);
+                else if (iconPage == 6)
+                    _selectedCube = PlayerRenderer::spiderRenderer(col1, col2, iconIndex + iconSlot, false, 0.65f);
+
                 auto _selectedIcon = CCMenuItemSpriteExtra::create(_selectedCube, self, menu_selector(AsaSelectedIcon::iconSelected::changeIcon));
                 _selectedIcon->setTag(iconIndex + iconSlot);
                 iconSelectedMenu->addChild(_selectedIcon, 5);
@@ -168,6 +169,14 @@ void AsaSelectedIcon::ContentLayer::changeTabPage(CCLayer *self, int iconType)
             if (iconLine[1] < 0)
                 iconLine[1] = 2;
         }
+    }
+
+    {
+        auto label = static_cast<CCLabelBMFont *>(pageLabel->getChildByTag(0));
+        int totalPage = (maxIcon[iconType] - 2) / 36;
+        auto pageString = CCString::createWithFormat("%i/%i", (selectedPage[iconType] + 1), (totalPage + 1))->getCString();
+        label->setString(pageString);
+        pageLabel->setVisible(totalPage != 0);
     }
 };
 
@@ -352,6 +361,14 @@ void AsaSelectedIcon::ContentLayer::updatePlayerIcon()
 
 bool AsaSelectedIcon::ContentLayer::init()
 {
+    maxIcon[0] = SecondPlayer::getMaxIcon(0);
+    maxIcon[1] = SecondPlayer::getMaxIcon(1);
+    maxIcon[2] = SecondPlayer::getMaxIcon(2);
+    maxIcon[3] = SecondPlayer::getMaxIcon(3);
+    maxIcon[4] = SecondPlayer::getMaxIcon(4);
+    maxIcon[5] = SecondPlayer::getMaxIcon(5);
+    maxIcon[6] = SecondPlayer::getMaxIcon(6);
+
     this->setKeypadEnabled(true);
     SecondPlayer::firstTime();
     auto _d = CCDirector::sharedDirector();
@@ -365,6 +382,21 @@ bool AsaSelectedIcon::ContentLayer::init()
     isCustomSecondPlayer = true;
     auto iconBG = extension::CCScale9Sprite::create("square02_small.png");
     this->addChild(_bg, -30);
+    {
+        auto iconPage = extension::CCScale9Sprite::create("square02_small.png");
+        iconPage->setPosition({_s.width / 2, 50});
+        iconPage->setTag(1501);
+        iconPage->setOpacity(75);
+        iconPage->setContentSize({145, 50});
+        iconPage->setScale(0.5);
+        this->addChild(iconPage, 1);
+
+        auto pageLabel = CCLabelBMFont::create("1/1", "bigFont.fnt");
+        pageLabel->setPosition({iconPage->getContentSize().width / 2, iconPage->getContentSize().height / 2});
+        pageLabel->setTag(0);
+        iconPage->addChild(pageLabel, 1);
+    }
+
     {
         auto backBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_arrow_03_001.png"), this, menu_selector(ContentLayer::gobackBtn));
         auto backBtnMenu = CCMenu::create();
@@ -480,6 +512,7 @@ bool AsaSelectedIcon::ContentLayer::init()
         AsaSelectedIcon::ContentLayer *layers = new AsaSelectedIcon::ContentLayer();
         layers->changeTabPage(this, iconPage);
     }
+
     {
         auto playerMenu = CCMenu::create();
 

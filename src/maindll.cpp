@@ -5,6 +5,8 @@ void mod_main(HMODULE)
     matdash::add_hook<&LayerInit::main>(base + 0x1907B0);
     matdash::add_hook<&LayerInit::editorUI>(base + 0x76310);
 
+    matdash::add_hook<&LayerInit::GJGameLevelEditor>(base + 0x6F5D0);
+
     matdash::add_hook<&LayerInit::selectedLiveOverlay>(base + 0x41DB0);
     matdash::add_hook<&LayerInit::onSelectedTabLiveOverlay>(base + 0x430f0);
 

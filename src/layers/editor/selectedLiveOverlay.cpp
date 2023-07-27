@@ -2,20 +2,23 @@
 
 void selectedLiveOverlay::overlay::init(CCLayer *self, ColorAction *col_1, ColorAction *col_2, EffectGameObject *gObj)
 {
-    auto tggOn = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
-    auto tggOff = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
-    tggOff->setScale(0.7f);
-    tggOn->setScale(0.7f);
+    {
+        auto tggOn = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
+        auto tggOff = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
+        tggOff->setScale(0.7f);
+        tggOn->setScale(0.7f);
 
-    auto s = CCDirector::sharedDirector()->getWinSize();
-    auto menu = CCMenu::create();
+        auto s = CCDirector::sharedDirector()->getWinSize();
+        auto menu = CCMenu::create();
 
-    auto blendingTgg = CCMenuItemToggler::create(tggOff, tggOn, self, menu_selector(selectedLiveOverlay::callback::onBlending));
-    blendingTgg->toggle(col_1->m_blending);
-    blendingTgg->setTag(1000);
-    menu->addChild(blendingTgg);
-    menu->setPosition({220, 165});
-    self->addChild(menu, 101);
+        auto blendingTgg = CCMenuItemToggler::create(tggOff, tggOn, self, menu_selector(selectedLiveOverlay::callback::onBlending));
+        blendingTgg->toggle(col_1->m_blending);
+        blendingTgg->setTag(1000);
+        menu->addChild(blendingTgg);
+        menu->setPosition({220, 165});
+        self->addChild(menu, 101);
+    }
+    return;
 };
 
 void selectedLiveOverlay::overlay::onSelectTab(CCLayer *self, CCObject *obj)

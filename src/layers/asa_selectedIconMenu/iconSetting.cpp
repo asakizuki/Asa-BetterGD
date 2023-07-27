@@ -3,7 +3,6 @@
 
 void IconSettingPopup::keyBackClicked()
 {
-
     this->setKeypadEnabled(false);
     this->setKeyboardEnabled(false);
     this->removeFromParentAndCleanup(true);
@@ -53,7 +52,7 @@ bool IconSettingPopup::init(CCLayer *)
             this->addSettingToggle("0096", "Switch Wave Trail Color");
             this->addSettingToggle("0060", "Default Mini Icon");
             this->addSettingToggle("1000", "Custom Second Player");
-            this->addSettingToggle("1001", "Fixed Second Player\nPosition");
+            // this->addSettingToggle("1001", "Fixed Second Player\nPosition");
         }
         return true;
     };

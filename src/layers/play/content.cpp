@@ -20,13 +20,6 @@ void PlayLayerInit::init(PlayLayer *self, GJGameLevel *lvl)
     auto col1 = getPlayer->colorForIdx(color_1);
     auto col2 = getPlayer->colorForIdx(color_2);
 
-    // for (int i = 0; i < 85; i++)
-    // {
-    //     objectLayer->getChildren()
-    //         ->objectAtIndex(i)
-    //         ->setTag(10000 + i);
-    // }
-
     objectLayer->getChildren()->objectAtIndex(5)->setTag(2568);
     objectLayer->getChildren()->objectAtIndex(5)->setTag(2568);
 

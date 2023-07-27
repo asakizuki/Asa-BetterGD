@@ -24,4 +24,55 @@ int SecondPlayer::getSecondColor() { return GameManager::sharedState()->getIntGa
 
 void SecondPlayer::setGlow(bool hasGlow) { GameManager::sharedState()->setGameVariable("SecondPlayerGlow", hasGlow); };
 
-bool SecondPlayer::getGlow() { return GameManager::sharedState()->getGameVariable("SecondPlayerGlow"); }
+bool SecondPlayer::getGlow() { return GameManager::sharedState()->getGameVariable("SecondPlayerGlow"); };
+
+int CurrentMaxIcon[7] = {0, 0, 0, 0, 0, 0, 0};
+void SecondPlayer::setupMaxIcon()
+{
+    CurrentMaxIcon[0] = SecondPlayer::getMaxSingleIcon("player");
+    CurrentMaxIcon[1] = SecondPlayer::getMaxSingleIcon("ship");
+    CurrentMaxIcon[2] = SecondPlayer::getMaxSingleIcon("player_ball");
+    CurrentMaxIcon[3] = SecondPlayer::getMaxSingleIcon("bird");
+    CurrentMaxIcon[4] = SecondPlayer::getMaxSingleIcon("dart");
+    CurrentMaxIcon[5] = SecondPlayer::getMaxSingleIcon("robot");
+    CurrentMaxIcon[6] = SecondPlayer::getMaxSingleIcon("spider");
+};
+int SecondPlayer::getMaxIcon(int index)
+{
+    return CurrentMaxIcon[index];
+};
+
+void SecondPlayer::fixCrashIssue()
+{
+    auto gm = GameManager::sharedState();
+
+    if (CurrentMaxIcon[0] - 1 < gm->getPlayerFrame())
+        gm->setPlayerFrame(CurrentMaxIcon[0] - 1);
+    if (CurrentMaxIcon[1] - 1 < gm->getPlayerShip())
+        gm->setPlayerShip(CurrentMaxIcon[1] - 1);
+    if (CurrentMaxIcon[2] - 1 < gm->getPlayerBall())
+        gm->setPlayerBall(CurrentMaxIcon[2] - 1);
+    if (CurrentMaxIcon[3] - 1 < gm->getPlayerBird())
+        gm->setPlayerBird(CurrentMaxIcon[3] - 1);
+    if (CurrentMaxIcon[4] - 1 < gm->getPlayerDart())
+        gm->setPlayerDart(CurrentMaxIcon[4] - 1);
+    if (CurrentMaxIcon[5] - 1 < gm->getPlayerRobot())
+        gm->setPlayerRobot(CurrentMaxIcon[5] - 1);
+    if (CurrentMaxIcon[6] - 1 < gm->getPlayerSpider())
+        gm->setPlayerSpider(CurrentMaxIcon[6] - 1);
+
+    if (CurrentMaxIcon[0] - 1 < SecondPlayer::getPlayerCube())
+        SecondPlayer::setPlayerCube(CurrentMaxIcon[0] - 1);
+    if (CurrentMaxIcon[1] - 1 < SecondPlayer::getPlayerShip())
+        SecondPlayer::setPlayerShip(CurrentMaxIcon[1] - 1);
+    if (CurrentMaxIcon[2] - 1 < SecondPlayer::getPlayerBall())
+        SecondPlayer::setPlayerBall(CurrentMaxIcon[2] - 1);
+    if (CurrentMaxIcon[3] - 1 < SecondPlayer::getPlayerUfo())
+        SecondPlayer::setPlayerUfo(CurrentMaxIcon[3] - 1);
+    if (CurrentMaxIcon[4] - 1 < SecondPlayer::getPlayerWave())
+        SecondPlayer::setPlayerWave(CurrentMaxIcon[4] - 1);
+    if (CurrentMaxIcon[5] - 1 < SecondPlayer::getPlayerRobot())
+        SecondPlayer::setPlayerRobot(CurrentMaxIcon[5] - 1);
+    if (CurrentMaxIcon[6] - 1 < SecondPlayer::getPlayerSpider())
+        SecondPlayer::setPlayerSpider(CurrentMaxIcon[6] - 1);
+}

@@ -4,11 +4,11 @@
     cmake --build build --config Release
 
     if exist "D:\Dev Project\Asa - Better GD\build\Release\asa-bettergd.dll" (
-        move "D:\Dev Project\Asa - Better GD\build\Release\asa-bettergd.dll" "D:\Program Files\Steam\steamapps\common\Geometry Dash\extensions"
+        move "D:\Dev Project\Asa - Better GD\build\Release\asa-bettergd.dll" "D:\Program Files\Steam\steamapps\common\Geometry Dash Mega Hack\extensions"
         if exist "D:\Dev Project\Asa - Better GD\build\Release\asa-bettergd.dll" (
             echo The file has not been moved yet
         ) else (
-            cd "D:\Program Files\Steam\steamapps\common\Geometry Dash"
+            cd "D:\Program Files\Steam\steamapps\common\Geometry Dash Mega Hack"
             start GeometryDash.exe
             echo Geometry Dash is ready :D
         )
