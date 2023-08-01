@@ -24,6 +24,17 @@ bool IconSettingPopup::init(CCLayer *)
             this->m_pLayer = layer;
             this->addChild(this->m_pLayer);
 
+            {
+                auto texture = extension::CCScale9Sprite::create("GJ_square05.png");
+                texture->setOpacity(0);
+                texture->setContentSize(_s);
+                auto bgButton = CCMenuItemSpriteExtra::create(texture, this, nullptr);
+                auto menu = CCMenu::create();
+                menu->addChild(bgButton, 1);
+                menu->setPosition({_s.width / 2, _s.height / 2});
+                this->m_pLayer->addChild(menu, -1);
+            }
+
             auto background = cocos2d::extension::CCScale9Sprite::create("GJ_square01.png");
             background->setContentSize({280.0f, 245.0f});
             background->setPosition({_s.width / 2, _s.height / 2});

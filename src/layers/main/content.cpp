@@ -9,6 +9,7 @@ void MainLayerInit::init(CCLayer *self)
     {
         // Cube
         WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x1f7e48), "\xB9\xFF\xFF", 3, NULL);
+        WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x1E6DD9), "\xBA\xFF\xFF", 3, NULL);
         WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x12C766), "\xC7\x44\x24\x14\xFF\xFF\x00\x00", 8, NULL);
         // Ship
         WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x1f7ff6), "\xBA\xFF\xFF", 3, NULL);
@@ -25,14 +26,21 @@ void MainLayerInit::init(CCLayer *self)
         // Robot
         WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x14673D), "\xB8\xFF\xFF", 3, NULL);
         WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x12C734), "\xC7\x44\x24\x14\xFF\xFF\x00\x00", 8, NULL);
+        WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x20900F), "\xB9\xFF\xFF\x00\x00", 5, NULL);
         // Spider
         WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x146745), "\xBA\xFF\xFF", 3, NULL);
         WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x12C74C), "\xC7\x44\x24\x14\xFF\xFF\x00\x00", 8, NULL);
+        WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x2090CB), "\xB9\xFF\xFF\x00\x00", 5, NULL);
+
+        // Clear scroll border
+        WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x2db6f), "\x6a\x00\x6a\x00\x6a\x00", 6, NULL);
+        WriteProcessMemory(GetCurrentProcess(), reinterpret_cast<void *>(base + 0x2db6a), "\x68\x00\x00", 3, NULL);
 
         isFirsttime = false;
     }
     SecondPlayer::setupMaxIcon();
     SecondPlayer::fixCrashIssue();
+
     MainMenuMods::customBackground(self);
     MainMenuMods::secondPlayerSelectedIcon(self);
 };

@@ -238,7 +238,7 @@ void AsaSelectedIcon::iconSelected::iconPageRight(CCLayer *)
     auto selectedIconBG = static_cast<extension::CCScale9Sprite *>(self->getChildByTag(1500));
     static_cast<CCMenu *>(selectedIconBG->getChildByTag(0))->removeMeAndCleanup();
     selectedPage[iconPage]++;
-    auto maxPage = maxIcon[iconPage] / 36;
+    auto maxPage = (maxIcon[iconPage] - 2) / 36;
     if (selectedPage[iconPage] > maxPage)
         selectedPage[iconPage] = 0;
     AsaSelectedIcon::ContentLayer *layers = new AsaSelectedIcon::ContentLayer();
@@ -251,7 +251,7 @@ void AsaSelectedIcon::iconSelected::iconPageLeft(CCLayer *)
     auto selectedIconBG = static_cast<extension::CCScale9Sprite *>(self->getChildByTag(1500));
     static_cast<CCMenu *>(selectedIconBG->getChildByTag(0))->removeMeAndCleanup();
     selectedPage[iconPage]--;
-    auto maxPage = maxIcon[iconPage] / 36;
+    auto maxPage = (maxIcon[iconPage] - 2) / 36;
     if (selectedPage[iconPage] < 0)
         selectedPage[iconPage] = (int)maxPage;
     AsaSelectedIcon::ContentLayer *layers = new AsaSelectedIcon::ContentLayer();

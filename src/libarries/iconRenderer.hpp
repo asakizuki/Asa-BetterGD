@@ -1,8 +1,9 @@
 #include "./../includes.hpp"
 
-namespace PlayerRenderer
+class PlayerRenderer
 {
-    CCSprite *cubeRenderer(ccColor3B color_1, ccColor3B color_2, int cube_id = 1, bool has_glow = false, float scale = 1.f)
+public:
+    static CCSprite *cubeRenderer(ccColor3B color_1, ccColor3B color_2, int cube_id = 1, bool has_glow = false, float scale = 1.f)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -18,7 +19,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *shipRenderer(ccColor3B color_1, ccColor3B color_2, int ship_id = 1, bool has_glow = false, float scale = 1.f)
+    static CCSprite *shipRenderer(ccColor3B color_1, ccColor3B color_2, int ship_id = 1, bool has_glow = false, float scale = 1.f)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -34,7 +35,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *ballRenderer(ccColor3B color_1, ccColor3B color_2, int ball_id = 1, bool has_glow = false, float scale = 1.f)
+    static CCSprite *ballRenderer(ccColor3B color_1, ccColor3B color_2, int ball_id = 1, bool has_glow = false, float scale = 1.f)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -50,7 +51,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *ufoRenderer(ccColor3B color_1, ccColor3B color_2, int ufo_id = 1, bool has_glow = false, float scale = 1.f)
+    static CCSprite *ufoRenderer(ccColor3B color_1, ccColor3B color_2, int ufo_id = 1, bool has_glow = false, float scale = 1.f)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -66,7 +67,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *waveRenderer(ccColor3B color_1, ccColor3B color_2, int wave_id = 1, bool has_glow = false, float scale = 1.f)
+    static CCSprite *waveRenderer(ccColor3B color_1, ccColor3B color_2, int wave_id = 1, bool has_glow = false, float scale = 1.f)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -82,7 +83,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *robotRenderer(ccColor3B color_1, ccColor3B color_2, int robot_id = 1, bool has_glow = false, float scale = 1.f)
+    static CCSprite *robotRenderer(ccColor3B color_1, ccColor3B color_2, int robot_id = 1, bool has_glow = false, float scale = 1.f)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -102,7 +103,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *spiderRenderer(ccColor3B color_1, ccColor3B color_2, int spider_id = 1, bool has_glow = false, float scale = 1.f)
+    static CCSprite *spiderRenderer(ccColor3B color_1, ccColor3B color_2, int spider_id = 1, bool has_glow = false, float scale = 1.f)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -122,7 +123,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *iconWithShipRenderer(ccColor3B color_1, ccColor3B color_2, int cube_id = 1, int ship_id = 1, bool hasGlow = false)
+    static CCSprite *iconWithShipRenderer(ccColor3B color_1, ccColor3B color_2, int cube_id = 1, int ship_id = 1, bool hasGlow = false)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);
@@ -139,7 +140,7 @@ namespace PlayerRenderer
         return iconKit;
     };
 
-    CCSprite *iconWithUFORenderer(ccColor3B color_1, ccColor3B color_2, int cube_id = 1, int ufo_id = 1, bool hasGlow = false)
+    static CCSprite *iconWithUFORenderer(ccColor3B color_1, ccColor3B color_2, int cube_id = 1, int ufo_id = 1, bool hasGlow = false)
     {
         auto iconKit = CCSprite::create("square02_small.png");
         iconKit->setOpacity(0);

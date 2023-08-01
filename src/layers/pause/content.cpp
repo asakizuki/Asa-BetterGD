@@ -1,4 +1,6 @@
 #include "./content.hpp"
+#include "../selected_icon_popup/content.hpp"
+#include "../selected_icon_popup/CustomLevelSetting.hpp"
 
 bool noclipMode = false;
 
@@ -126,6 +128,7 @@ void PauseLayerInit::init(CCLayer *self)
 
     // Someshit Button
     auto modMenuBtn = CCMenu::create();
+    auto noclipMenuBtn = CCMenu::create();
 
     auto tggOff = CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
     auto tggOn = CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
@@ -133,15 +136,33 @@ void PauseLayerInit::init(CCLayer *self)
     tggOn->setScale(0.7f);
     auto noClipButton = CCMenuItemToggler::create(tggOff, tggOn, self, menu_selector(PauseLayerInit::noclipActive));
     noClipButton->toggle(noclipMode);
+    noClipButton->setPosition({0, 0});
 
     modMenuBtn->setPosition({size.width - 35 - 159, size.height - 128});
-    modMenuBtn->addChild(noClipButton);
     modMenuBtn->setAnchorPoint({1, 0});
+    noclipMenuBtn->setPosition({45, size.height - 128});
+    noclipMenuBtn->addChild(noClipButton);
+    noclipMenuBtn->setAnchorPoint({-1, 0});
 
     auto buttonNoclipName = CCLabelBMFont::create("Noclip", "bigFont.fnt");
     buttonNoclipName->setScale(0.4f);
     buttonNoclipName->setAnchorPoint({0.5, 0});
-    buttonNoclipName->setPosition(size.width - 175 + noClipButton->getContentSize().width, size.height - 128 - 6);
+    buttonNoclipName->setPosition(88.7f, 186);
+
+    auto commentBtnTexture = CCSprite::createWithSpriteFrameName("GJ_chatBtn_001.png");
+    commentBtnTexture->setScale(0.75f);
+    auto buttonComment = CCMenuItemSpriteExtra::create(commentBtnTexture, self, menu_selector(PauseLayerInit::InfoLayer));
+    buttonComment->setPosition({-15, 0});
+
+    auto iconBtnTexture = CCSprite::createWithSpriteFrameName("GJ_menuBtn_001.png");
+    iconBtnTexture->setScale(0.58f);
+    auto buttonIcon = CCMenuItemSpriteExtra::create(iconBtnTexture, self, menu_selector(PauseLayerInit::challenge));
+    buttonIcon->setPosition({25, 0});
+
+    auto levelSettingBtn = CCSprite::createWithSpriteFrameName("GJ_optionsBtn02_001.png");
+    levelSettingBtn->setScale(0.93f);
+    auto buttoLevelnSetting = CCMenuItemSpriteExtra::create(levelSettingBtn, self, menu_selector(LevelSettingPopup::callback));
+    buttoLevelnSetting->setPosition({65, 0});
 
     auto settingBtnTexture = CCSprite::createWithSpriteFrameName("GJ_optionsBtn_001.png");
     settingBtnTexture->setScale(0.7f);
@@ -149,12 +170,16 @@ void PauseLayerInit::init(CCLayer *self)
     buttonSetting->setPosition({105, 0});
 
     auto challengeBtntexture = CCSprite::createWithSpriteFrameName("GJ_starBtn_001.png");
-    challengeBtntexture->setScale(0.7f);
-    auto buttonChallenge = CCMenuItemSpriteExtra::create(challengeBtntexture, self, menu_selector(PauseLayerInit::challenge));
+    challengeBtntexture->setScale(0.75f);
+    auto buttonChallenge = CCMenuItemSpriteExtra::create(challengeBtntexture, self, menu_selector(SelectedIconPopup::callback));
     buttonChallenge->setPosition({145, 0});
 
+    modMenuBtn->addChild(buttoLevelnSetting);
     modMenuBtn->addChild(buttonSetting);
     modMenuBtn->addChild(buttonChallenge);
+    modMenuBtn->addChild(buttonIcon);
+    modMenuBtn->addChild(buttonComment);
     self->addChild(modMenuBtn, 50);
+    self->addChild(noclipMenuBtn, 50);
     self->addChild(buttonNoclipName, 50);
 };

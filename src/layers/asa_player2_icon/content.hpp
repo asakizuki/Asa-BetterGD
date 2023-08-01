@@ -48,9 +48,10 @@ public:
                 auto pCubeIndex = SecondPlayer::addZero(currentIcon);
                 auto p1 = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s_001.png", iconName, pCubeIndex)->getCString());
                 auto p2 = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s_2_001.png", iconName, pCubeIndex)->getCString());
+                auto p3 = (iconName == "bird") ? CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s_3_001.png", iconName, pCubeIndex)->getCString()) : true;
                 auto glow = CCSprite::createWithSpriteFrameName(CCString::createWithFormat("%s_%s_glow_001.png", iconName, pCubeIndex)->getCString());
 
-                if (!(p1 && p2 && glow) || !(currentIcon < 999))
+                if (!(p1 && p2 && p3 && glow) || !(currentIcon < 999))
                     break;
                 else
                     totalIcon = currentIcon + 1;
