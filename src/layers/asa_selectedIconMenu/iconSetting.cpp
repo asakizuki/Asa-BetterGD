@@ -17,7 +17,6 @@ bool IconSettingPopup::init(CCLayer *)
         auto _s = CCDirector::sharedDirector()->getWinSize();
         {
             this->setKeypadEnabled(true);
-            this->setKeyboardEnabled(true);
 
             auto layer = CCLayer::create();
             layer->setContentSize(_s);

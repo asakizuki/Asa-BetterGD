@@ -14,4 +14,6 @@ void mod_main(HMODULE)
 
     matdash::add_hook<&LayerInit::play>(base + 0x1FB780);
     matdash::add_hook<&LayerInit::playUpdate>(base + 0x2029C0);
+
+    // matdash::add_hook<&LayerInit::gameObjectCreateWithkey>(base + 0xcfac0);
 };

@@ -61,7 +61,6 @@ void setColorC(PlayerObject *playerObject)
     auto gm = GameManager::sharedState();
     auto c1 = gm->colorForIdx(gm->getPlayerColor());
     auto c2 = gm->colorForIdx(gm->getPlayerColor2());
-    playerObject->m_iconGlow->setColor(c2);
     playerObject->m_bHasGlow = gm->getPlayerGlow();
 
     playerObject->setColor(c1);
@@ -77,7 +76,6 @@ void setColorB(PlayerObject *playerObject)
 
     playerObject->setColor(c2);
     playerObject->setSecondColor(c1);
-    playerObject->m_iconGlow->setColor(c1);
     playerObject->m_bHasGlow = gm->getPlayerGlow();
     playerObject->updatePlayerGlow();
 }

@@ -270,7 +270,7 @@ bool SelectedIconScreen::init(CCLayer *thisLayer)
             iconBG->addChild(scrollLayer);
             static_cast<CCLayer *>(scrollLayer->getChildren()->objectAtIndex(0))->setVisible(false);
             this->loadIconList();
-                }
+        }
         return true;
     }
     return false;

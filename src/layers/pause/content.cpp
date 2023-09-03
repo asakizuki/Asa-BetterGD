@@ -79,7 +79,6 @@ void PauseLayerInit::init(CCLayer *self)
 {
     auto size = CCDirector::sharedDirector()->getWinSize();
     auto gameInfo = GameManager::sharedState()->getPlayLayer();
-
     // Info
     auto levelName = CCLabelBMFont::create(gameInfo->m_level->levelName.c_str(), "goldFont.fnt");
     levelName->setPosition({35, size.height - 30});
@@ -119,6 +118,8 @@ void PauseLayerInit::init(CCLayer *self)
     self->addChild(levelLengthLabel, 50);
     self->addChild(levelType, 50);
     self->addChild(levelVersion, 50);
+
+    gameInfo->m_level->objectCount;
 
     // Progress Bar
     generateProgressbar(self, gameInfo->m_level->normalPercent, 45, ccColor3B({0, 255, 0}), "Normal", !gameInfo->m_isPracticeMode);

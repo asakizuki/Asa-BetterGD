@@ -46,4 +46,9 @@ namespace LayerInit
         matdash::orig<&playUpdate>(self, lvl);
         PlayLayerUpdate::init(self);
     };
+    void gameObjectCreateWithkey(GameObject *self)
+    {
+        matdash::orig<&gameObjectCreateWithkey>(self);
+        customGameObject::createWithkey(self);
+    };
 };

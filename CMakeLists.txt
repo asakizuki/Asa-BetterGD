@@ -21,9 +21,12 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   libraries/gd.h/include
   libraries/gd.h/
   libraries/matdash/include
+  libraries/imgui-hook/imgui
+  libraries/imgui-hook
 )
 
 add_subdirectory(libraries/minhook)
 add_subdirectory(libraries/cocos-headers)
+add_subdirectory(libraries/imgui-hook)
 
-target_link_libraries(${PROJECT_NAME} minhook cocos2d)
+target_link_libraries(${PROJECT_NAME} minhook cocos2d imgui-hook)

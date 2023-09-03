@@ -5,3 +5,4 @@
 #include "./layers/pause/content.hpp"
 #include "./layers/play/content.hpp"
 #include "./layers/play/update.hpp"
+#include "./layers/gameobject/CustomGameObject.hpp"
